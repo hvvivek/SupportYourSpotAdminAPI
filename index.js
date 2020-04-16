@@ -60,12 +60,14 @@ app.get("/oauth_token", async (req, res) => {
         const {tokens} = await oauth2Client.getToken(code)
         return res.json({"status": true, "tokens": tokens})            
     } catch (error) {
+        console.log(error)
         return res.json({"status": false})
     }
  });
 
  app.get("/user_info", async (req, res) => {
     const tokens = req.query.tokens
+    console.log(tokens)
     auth = oauth2Client.setCredentials(JSON.parse(tokens));
     let data = await user_info.userinfo.get({auth: oauth2Client})
     res.json({"status": true, "user": data})
