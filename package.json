@@ -1,0 +1,20 @@
+{
+  "name": "city-admin-api",
+  "version": "1.0.0",
+  "description": "This is the REST API which manages the city admin backend",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Vivek HV",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "googleapis": "^48.0.0",
+    "mongoose": "^5.9.9",
+    "nodemon": "^2.0.3"
+  }
+}
