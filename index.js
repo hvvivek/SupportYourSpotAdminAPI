@@ -68,9 +68,17 @@ app.get("/oauth_token", async (req, res) => {
  app.get("/user_info", async (req, res) => {
     const tokens = req.query.tokens
     console.log(tokens)
-    auth = oauth2Client.setCredentials(JSON.parse(tokens));
-    let data = await user_info.userinfo.get({auth: oauth2Client})
-    res.json({"status": true, "user": data})
+    if(tokens)
+    {
+        auth = oauth2Client.setCredentials(JSON.parse(tokens));
+        let data = await user_info.userinfo.get({auth: oauth2Client})
+        res.json({"status": true, "user": data})
+    }
+    else
+    {
+        res.json({"status":false, "message":"Tokens are undefined"})
+    }
+    
  })
 
  app.get("/data", async (req, res) => {
@@ -87,7 +95,6 @@ async function getData(auth, SPREADSHEET_ID, RANGE) {
         range: RANGE
     }
     const response = await sheets.spreadsheets.values.get(request)
-
     return response.data
   }
 
